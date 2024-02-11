@@ -1,17 +1,21 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = {
-  name: "test",
+  name: "changelogo",
   category: "Information",
-  description: "Check Ping Bot",
+  description: "Change the logo of the bot!",
   args: false,
   usage: "",
   userPrams: [],
   botPrams: ['EMBED_LINKS'],
-  owner: false,
+  owner: true,
   execute: async (message, args, client, prefix) => {
-
-    await client.user.setAvatar("https://media1.tenor.com/m/6ZhzHHYyNxoAAAAC/luffy.gif");
-    message.reply("> Avatar Changed Successfully!")
+ let logo = args[0];
+ if(!logo){
+  message.reply("> No valid logo link provided")
+ } else {
+    await client.user.setAvatar(logo);
+    message.reply("> Avatar Changed Successfully!");
+ }
   }
 }
